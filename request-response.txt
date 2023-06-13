@@ -1,0 +1,22 @@
+$posts = Post::all();
+
+// response in json with header content and cookie
+Route::get('/response', function() use ($posts) {
+    return response($posts, 201)
+            ->header('Content-Type', 'application/json')
+            ->cookie('MY_COOKIE', 'Test User', 3600);
+});
+
+
+
+// response in json only
+Route::get('/response', function() use ($posts) {
+    return response()->json($posts);
+});
+
+
+
+// download file with response
+Route::get('/download', function() use ($posts) {
+    return response()->download(public_path('test.png', 'download.jpg'));
+});

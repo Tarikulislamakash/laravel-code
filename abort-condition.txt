@@ -1,0 +1,5 @@
+Route::get('/response', function() use ($posts) {
+    abort_if(!isset($posts), 404);
+
+    return response()->json($posts);
+});
